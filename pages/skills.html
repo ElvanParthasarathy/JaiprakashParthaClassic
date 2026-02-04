@@ -1,0 +1,281 @@
+<style>
+  /* ---- Local CSS: Skills Page (Fixed Spacing) ---- */
+
+  /* 1. Container */
+  .skills-container {
+    padding-top: 110px; /* MATCHED TO ABOUT PAGE */
+    padding-bottom: 100px;
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .animate-card { 
+    opacity: 0; 
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+  }
+  
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+
+  /* Typography */
+  .page-header { margin-bottom: 25px; } /* MATCHED TO ABOUT PAGE */
+  .page-header h1 {
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+  }
+  .page-header p { font-size: 1rem; color: #666; font-weight: 500; }
+
+  /* Grid Layouts */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  /* ---- CARD STYLES ---- */
+  .skill-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.65) 100%);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 32px;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(180, 180, 180, 0.1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(255, 158, 24, 0.15);
+    border-color: rgba(255, 158, 24, 0.3);
+    background: #fff;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+  }
+  
+  .header-icon {
+    width: 48px; height: 48px;
+    background: rgba(255, 158, 24, 0.12);
+    color: #ff9e18;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease; 
+  }
+
+  .skill-card:hover .header-icon {
+    transform: scale(1.15) rotate(6deg);
+    background: #ff9e18;
+    color: #fff;
+  }
+
+  .card-header h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1a1a1a;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #555;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: default;
+  }
+
+  .tag:hover {
+    background: #ff9e18;
+    color: #000;
+    border-color: #ff9e18;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 158, 24, 0.25);
+  }
+
+  .learning-card {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+  }
+  .learning-card .header-icon { background: rgba(255,255,255,0.15); color: #ff9e18; }
+  .learning-card h3 { color: #fff; }
+  .learning-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    border-color: #333;
+    background: #222;
+  }
+  
+  .learning-card .tag {
+    background: rgba(255,255,255,0.1);
+    color: #ddd;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .learning-card .tag:hover {
+    background: #ff9e18;
+    color: #000;
+    border-color: #ff9e18;
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .skills-container { padding-top: 120px; }
+  }
+</style>
+
+<div class="title-pill">Skills & Tools</div>
+
+<div class="skills-container">
+  
+  <div class="page-header animate-card">
+    <h1>Skills & Tools</h1>
+    <p>My technical toolkit and professional capabilities.</p>
+  </div>
+
+  <div class="skills-grid">
+    
+    <div class="skill-card animate-card delay-1">
+      <div class="card-header">
+        <div class="header-icon"><i class="ri-code-s-slash-line"></i></div>
+        <h3>Programming & Database</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">C++ (Basics)</span>
+        <span class="tag">Java (Basics)</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">DBMS Fundamentals</span>
+        <span class="tag">SQL (Beginner)</span>
+      </div>
+    </div>
+
+    <div class="skill-card animate-card delay-2">
+      <div class="card-header">
+        <div class="header-icon"><i class="ri-cpu-line"></i></div>
+        <h3>Core Electronics & IoT</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Microcontrollers (Basics)</span>
+        <span class="tag">Sensors & Actuators</span>
+        <span class="tag">IoT Fundamentals</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="skills-grid">
+    
+    <div class="skill-card animate-card delay-3">
+      <div class="card-header">
+        <div class="header-icon"><i class="ri-router-line"></i></div>
+        <h3>Networking</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Computer Networks</span>
+        <span class="tag">CCNA Concepts</span>
+        <span class="tag">Routing & Switching Basics</span>
+      </div>
+    </div>
+
+    <div class="skill-card animate-card delay-4">
+      <div class="card-header">
+        <div class="header-icon"><i class="ri-tools-fill"></i></div>
+        <h3>Software & Tools</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">VS Code</span>
+        <span class="tag">Microsoft Office Suite</span>
+        <span class="tag">Adobe Illustrator (Basic)</span>
+        <span class="tag">Canva (Design & Layouts)</span>
+        <span class="tag">DaVinci Resolve (Basic)</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="skills-grid">
+
+    <div class="skill-card animate-card delay-1">
+      <div class="card-header">
+        <div class="header-icon"><i class="ri-palette-fill"></i></div>
+        <h3>Creative & Media</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Drawing</span>
+        <span class="tag">Sketching</span>
+        <span class="tag">Painting</span>
+        <span class="tag">Photo Editing</span>
+        <span class="tag">Video Editing</span>
+        <span class="tag">Digital Illustration</span>
+        <span class="tag">Layout & Visual Design</span>
+        <span class="tag">UI/UX Wireframing</span>
+      </div>
+    </div>
+    
+    <div class="skill-card animate-card delay-2">
+      <div class="card-header">
+        <div class="header-icon"><i class="ri-briefcase-4-fill"></i></div>
+        <h3>Professional Skills</h3>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Technical Writing</span>
+        <span class="tag">Interpersonal Communication</span>
+        <span class="tag">Team Collaboration</span>
+        <span class="tag">Problem Solving</span>
+        <span class="tag">Curiosity-Driven Learning</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="skills-grid" style="grid-template-columns: 1fr;">
+    
+  <div class="skill-card animate-card delay-3">
+    <div class="card-header">
+      <div class="header-icon"><i class="ri-rocket-2-fill"></i></div>
+      <h3>Also Learning / Exploring</h3>
+    </div>
+    <div class="skill-tags">
+      <span class="tag">AI Tools for Engineering Productivity</span>
+    </div>
+  </div>
+
+</div>
+
+</div>

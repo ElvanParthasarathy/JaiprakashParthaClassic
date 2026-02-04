@@ -1,0 +1,331 @@
+<style>
+  /* ---- Local CSS: Experience Page (Fixed Spacing) ---- */
+
+  /* 1. Container */
+  .experience-container {
+    padding-top: 110px; /* MATCHED TO ABOUT PAGE */
+    padding-bottom: 100px;
+    width: 100%;
+    max-width: 1100px; 
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-card { opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+
+  /* Typography */
+  .page-header { margin-bottom: 25px; } /* MATCHED TO ABOUT PAGE */
+  .page-header h1 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+  }
+  .page-header p { font-size: 1.1rem; color: #666; font-weight: 500; }
+
+  /* Glass Card Base */
+  .glass-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.65) 100%);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 32px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(180, 180, 180, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 40px;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+  }
+  .section-title i { color: #ff9e18; font-size: 1.5rem; }
+
+  /* ---- INTERNSHIPS (Timeline Style) ---- */
+  .intern-list { display: flex; flex-direction: column; gap: 25px; }
+  
+  .intern-item {
+    padding-left: 20px;
+    border-left: 3px solid rgba(255, 158, 24, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .intern-item:hover {
+    border-left-color: #ff9e18;
+    transform: translateX(10px);
+  }
+
+  .intern-role { font-size: 1.2rem; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .intern-meta { font-size: 0.9rem; color: #ff9e18; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .intern-desc { font-size: 1rem; color: #555; line-height: 1.6; }
+
+  /* ---- CERTIFICATIONS (Grid Layout) ---- */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+  }
+  
+  .cert-column h3 {
+    font-size: 1rem; font-weight: 800; text-transform: uppercase; color: #999;
+    letter-spacing: 1px; margin-bottom: 20px;
+  }
+
+  .cert-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 15px; border-radius: 16px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 15px;
+    transition: all 0.2s ease;
+  }
+  .cert-item:hover {
+    background: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transform: translateY(-2px);
+  }
+
+  .cert-info h4 { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+  .cert-info span { font-size: 0.85rem; color: #666; }
+
+  /* View Button */
+  .cert-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.8rem; font-weight: 700;
+    color: #1a1a1a; text-decoration: none;
+    padding: 6px 12px; border-radius: 8px;
+    background: rgba(255, 158, 24, 0.15);
+    transition: all 0.2s;
+  }
+  .cert-btn:hover { background: #ff9e18; color: #fff; }
+
+  /* ---- PAPERS & INNOVATION ---- */
+  .paper-item {
+    margin-bottom: 30px;
+    padding: 25px;
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+  }
+  .paper-item:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+  .paper-item:last-child { margin-bottom: 0; }
+
+  .paper-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 10px; }
+  
+  .paper-title { font-size: 1.15rem; font-weight: 800; color: #1a1a1a; line-height: 1.3; }
+  .paper-meta { font-size: 0.9rem; color: #777; margin-bottom: 10px; display: block; font-weight: 500; }
+  
+  /* Badge for Awards */
+  .award-badge {
+    background: #ff9e18; color: #fff;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .paper-desc { font-size: 1rem; color: #555; line-height: 1.6; }
+  .paper-desc strong { color: #1a1a1a; font-weight: 600; }
+
+  /* ---- WORKSHOPS ---- */
+  .workshop-list { list-style: none; padding: 0; }
+  .workshop-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 15px;
+    font-size: 1rem; color: #555; line-height: 1.6;
+  }
+  .workshop-item i { color: #ff9e18; font-size: 1.2rem; margin-top: 2px; }
+  .workshop-item strong { color: #1a1a1a; font-weight: 700; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .cert-grid { grid-template-columns: 1fr; }
+    .experience-container { padding-top: 120px; }
+  }
+</style>
+
+<div class="title-pill">Experience</div>
+
+<div class="experience-container">
+  
+  <div class="page-header animate-card">
+    <h1>Experience</h1>
+    <p>My professional training, projects, and certifications.</p>
+  </div>
+
+  <div class="glass-card animate-card delay-1">
+    <h2 class="section-title"><i class="ri-briefcase-4-line"></i> Internships</h2>
+    
+    <div class="intern-list">
+      
+      <div class="intern-item">
+        <h3 class="intern-role">Sri Lakshmi Saraswathi Textiles (Arni) Ltd</h3>
+        <p class="intern-meta">Student Intern | June 2025</p>
+        <p class="intern-desc">Gained industrial exposure to textile manufacturing and operational workflows.</p>
+      </div>
+
+      <div class="intern-item">
+        <h3 class="intern-role">Voltech Manufacturing Company Pvt. Ltd.</h3>
+        <p class="intern-meta">Student Intern | Dec 2024</p>
+        <p class="intern-desc">Gained practical exposure to component testing and industrial processes.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="glass-card animate-card delay-2">
+    <h2 class="section-title"><i class="ri-award-line"></i> Certifications</h2>
+    
+    <div class="cert-grid">
+      
+      <div class="cert-column">
+        <h3>Technical</h3>
+        
+        <div class="cert-item">
+          <div class="cert-info">
+            <h4>CCNA: Intro to Networks</h4>
+            <span>Cisco</span>
+          </div>
+          <a href="https://www.credly.com/badges/c73c4745-0daf-46d6-b51f-181dea752bc8/linked_in_profile" target="_blank" class="cert-btn">
+            View <i class="ri-external-link-line"></i>
+          </a>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-info">
+            <h4>MongoDB Basics</h4>
+            <span>MongoDB</span>
+          </div>
+          <a href="https://www.credly.com/badges/33d721f0-a03a-4648-af39-95f4f624b3d8/linked_in_profile" target="_blank" class="cert-btn">
+            View <i class="ri-external-link-line"></i>
+          </a>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-info">
+            <h4>Machine Learning, ML</h4>
+            <span>NPTEL</span>
+          </div>
+          <a href="https://archive.nptel.ac.in/content/noc/NOC25/SEM1/Ecertificates/106/noc25-cs50/Course/NPTEL25CS50S44330355801209953.pdf" target="_blank" class="cert-btn">
+            View <i class="ri-external-link-line"></i>
+          </a>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-info">
+            <h4>Sensor Technologies</h4>
+            <span>NPTEL</span>
+          </div>
+          <a href="https://archive.nptel.ac.in/content/noc/NOC24/SEM2/Ecertificates/108/noc24-ee83/Course/NPTEL24EE83S24950023402616699.pdf" target="_blank" class="cert-btn">
+            View <i class="ri-external-link-line"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="cert-column">
+        <h3>Personal Growth</h3>
+        
+        <div class="cert-item">
+          <div class="cert-info">
+            <h4>The Science of Happiness</h4>
+            <span>NPTEL</span>
+          </div>
+          <a href="https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/109/noc25-hs141/Course/NPTEL25HS141S45390998810240065.pdf" target="_blank" class="cert-btn">
+            View <i class="ri-external-link-line"></i>
+          </a>
+        </div>
+
+        <div class="cert-item">
+          <div class="cert-info">
+            <h4>Soft Skills & Personality</h4>
+            <span>NPTEL</span>
+          </div>
+          <a href="https://archive.nptel.ac.in/content/noc/NOC24/SEM1/Ecertificates/109/noc24-hs26/Course/NPTEL24HS26S85350390330351810.pdf" target="_blank" class="cert-btn">
+            View <i class="ri-external-link-line"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="glass-card animate-card delay-3">
+    <h2 class="section-title"><i class="ri-article-line"></i> Papers & Innovation</h2>
+    
+    <div class="paper-item">
+      <div class="paper-header">
+        <div class="paper-title">COULOMB 2025</div>
+        <span class="award-badge"><i class="ri-trophy-fill"></i> 2nd Prize</span>
+      </div>
+      <span class="paper-meta">Rajalakshmi Engineering College | Mar 2025</span>
+      <p class="paper-desc">
+        Presented paper on <strong>"Piezoelectric Material-Based Instant Charging System for EVs"</strong> at the National Level Technical Symposium.
+      </p>
+    </div>
+
+    <div class="paper-item">
+      <div class="paper-header">
+        <div class="paper-title">KalaQuest: Preserving Legacies</div>
+      </div>
+      <span class="paper-meta">E-Summit'25, IIT Madras | Feb 2025</span>
+      <p class="paper-desc">
+        Business Pitch Participant. Presented a business model to revive endangered Indian crafts in offline finals after qualifying online.
+      </p>
+    </div>
+
+    <div class="paper-item">
+      <div class="paper-header">
+        <div class="paper-title">ARTC-23 National Conference</div>
+      </div>
+      <span class="paper-meta">Tirunelveli Dakshina Mara Nadar Sangam College | Sep 2023</span>
+      <p class="paper-desc">
+        Presented paper on <strong>"Electric Vehicles: Pioneering a World of Sustainable Transportation"</strong>.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="glass-card animate-card delay-4">
+    <h2 class="section-title"><i class="ri-group-line"></i> Workshops & Events</h2>
+    
+    <ul class="workshop-list">
+      <li class="workshop-item">
+        <i class="ri-arrow-right-circle-fill"></i>
+        <span>
+          <strong>COGNEBULA '25:</strong> Technical Symposium Participant, Velammal Engineering College (Feb 2025)
+        </span>
+      </li>
+      <li class="workshop-item">
+        <i class="ri-arrow-right-circle-fill"></i>
+        <span>
+          <strong>Big Prototype Challenge:</strong> R.M.D. Engineering College (Feb 2025)
+        </span>
+      </li>
+      <li class="workshop-item">
+        <i class="ri-arrow-right-circle-fill"></i>
+        <span>
+          <strong>Design Thinking Workshop:</strong> RUSA 2.0 Startup Café, CED – Anna University (Apr 2024)
+        </span>
+      </li>
+    </ul>
+  </div>
+
+</div>

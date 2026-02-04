@@ -1,0 +1,163 @@
+/* ---- Import Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ---- Variables (GLOBAL THEME) ---- */
+:root {
+  --phd-orange: #ff9e18;
+  --phd-black: #1a1a1a;
+  --phd-grey: #555555;
+  --phd-bg: #ffffff;
+  --pill-bg: rgba(255, 255, 255, 0.55);   
+  --border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ---- Global Reset ---- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--phd-bg);
+  color: var(--phd-black);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  /* ---- BACKGROUND GLOW ---- */
+  background-image: 
+    radial-gradient(circle at 50% -10%, rgba(255, 158, 24, 0.35) 0%, rgba(255, 255, 255, 0) 65%),
+    radial-gradient(circle at 100% 40%, rgba(255, 120, 80, 0.2) 0%, rgba(255, 255, 255, 0) 50%),
+    radial-gradient(circle at 0% 80%, rgba(255, 180, 50, 0.25) 0%, rgba(255, 255, 255, 0) 50%);
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
+}
+
+/* ---- Navbar Wrapper ---- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px; 
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* ---- The Main Pill ---- */
+.nav-content {
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px; 
+  padding: 8px; 
+  width: calc(100% - 60px); 
+  max-width: 1350px; 
+  background: var(--pill-bg);
+  backdrop-filter: blur(35px) saturate(150%); 
+  -webkit-backdrop-filter: blur(35px) saturate(150%);
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(255, 255, 255, 0.3), 0 10px 40px rgba(0, 0, 0, 0.08); 
+  transition: max-width 0.7s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.7s ease;
+}
+
+.navbar.scrolled .nav-content {
+  max-width: 700px; 
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-elements { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; width: 100%; height: 100%; }
+
+/* ---- Navigation Elements ---- */
+.logo-pill {
+  background: var(--phd-orange); color: #000; font-weight: 800; font-size: 16px; text-decoration: none; letter-spacing: -0.5px;
+  height: 100%; padding: 0 20px; border-radius: 50px; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s; flex-shrink: 0; box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5); border: 1px solid rgba(0,0,0,0.05);
+}
+.logo-pill:hover { transform: scale(1.05); }
+.logo-pill img.nav-logo { height: 100%; width: auto; display: block; transform: scale(1.35); }
+
+.nav-links { position: relative; display: flex; align-items: center; height: 100%; margin: 0 12px; gap: 6px; }
+
+.nav-item {
+  position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
+  padding: 0 20px; height: 100%; color: #555; text-decoration: none; font-weight: 600; font-size: 15px; border-radius: 50px; white-space: nowrap; transition: all 0.2s ease;
+}
+.nav-item:hover { color: #000; background-color: rgba(255, 255, 255, 0.4); }
+.nav-item.active { color: #000; font-weight: 700; background-color: #ffffff; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255,255,255, 1); }
+
+.cta-pill {
+  background: var(--phd-orange); color: #000; font-weight: 700; font-size: 15px; text-decoration: none;
+  height: 100%; padding: 0 24px; border-radius: 50px; display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 4px 15px rgba(255, 158, 24, 0.25);
+}
+.cta-pill:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(255, 158, 24, 0.4); }
+
+/* ---- CONTENT WRAPPER ---- */
+#content {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0; /* Let pages handle padding */
+  width: 100%;
+}
+
+/* ---- GLOBAL HEADER ALIGNMENT (Centers titles on Desktop) ---- */
+.page-header {
+  text-align: center !important;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- GLOBAL GLASS CARD (Utility) ---- */
+.glass-card {
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.55) 100%);
+  backdrop-filter: blur(40px) saturate(120%);
+  -webkit-backdrop-filter: blur(40px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
+  padding: 40px;
+  margin-bottom: 30px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 20px 50px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 158, 24, 0.1); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), inset 0 1px 0 white;
+}
+
+/* Utility Classes */
+.skill-tag { display: inline-block; background: rgba(255, 255, 255, 0.6); color: #333; padding: 8px 16px; border-radius: 50px; font-size: 0.9rem; font-weight: 500; margin: 0 8px 8px 0; border: 1px solid rgba(255, 255, 255, 0.6); }
+.cert-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+.cert-item:last-child { border-bottom: none; }
+.cert-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; color: #222; }
+.cert-btn { font-size: 0.75rem; font-weight: 600; color: #555; background: rgba(255, 255, 255, 0.6); border: 1px solid #e0e0e0; padding: 6px 14px; border-radius: 20px; text-decoration: none; transition: all 0.2s ease; margin-left: 10px; }
+.cert-btn:hover { background: var(--phd-orange); color: #000; border-color: var(--phd-orange); transform: translateY(-1px); }
+
+/* Global Footer */
+.global-footer { text-align: center; padding: 30px 20px 40px; border-top: 1px solid rgba(0, 0, 0, 0.06); width: 100%; margin-top: auto; }
+.global-footer p { color: #888; font-size: 0.9rem; margin-bottom: 5px; font-weight: 500; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-content { width: calc(100% - 24px); padding: 3px; }
+  .logo-pill, .cta-pill { padding: 0 16px; font-size: 14px; }
+  .nav-item { padding: 0 12px; font-size: 13px; }
+}

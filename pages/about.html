@@ -1,0 +1,341 @@
+<style>
+  /* ---- Local CSS: About Page Redesign ---- */
+
+  /* 1. Page Container */
+  .about-container {
+    padding-top: 110px; 
+    padding-bottom: 40px;
+    width: 100%;
+    max-width: 1150px; 
+    margin: 0 auto;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(8px, -12px); }
+    100% { transform: translate(0, 0); }
+  }
+
+  .animate-card { opacity: 0; animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+
+  /* Typography */
+  .page-header { margin-bottom: 25px; }
+  .page-header h1 {
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+  }
+  .page-header p { font-size: 1rem; color: #666; font-weight: 500; }
+
+  /* Common Glass Card */
+  .glass-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.65) 100%);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(180, 180, 180, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  /* ---- BENTO GRID ---- */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr; 
+    gap: 20px;
+    margin-bottom: 40px;
+    align-items: stretch; 
+  }
+
+  /* ---- 1. PROFILE HUB (Left) ---- */
+  .profile-hub {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    gap: 15px;
+    height: 100%;
+  }
+
+  /* Background Decorations */
+  .blob { position: absolute; border-radius: 50%; filter: blur(50px); z-index: 0; opacity: 0.5; }
+  .blob-1 { top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(255, 158, 24, 0.15); animation: float 7s ease-in-out infinite; }
+  .blob-2 { bottom: -50px; left: -50px; width: 180px; height: 180px; background: rgba(255, 220, 180, 0.3); animation: float 9s ease-in-out infinite reverse; }
+
+  /* Header Section */
+  .hub-header { position: relative; z-index: 1; }
+  .badge-pill { display: inline-flex; align-items: center; gap: 6px; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .badge-pill i { color: #ff9e18; }
+  .hub-name { font-size: clamp(1.8rem, 3vw, 2.2rem); font-weight: 900; color: #1a1a1a; line-height: 1.1; margin-bottom: 4px; }
+  .hub-alias { font-size: 0.95rem; color: #666; font-weight: 500; }
+
+  /* Inner Cards Stack */
+  .hub-stack { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+  
+  .inner-card {
+    background: #ffffff; border: 1px solid rgba(0,0,0,0.05); border-radius: 18px; padding: 15px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; min-height: 70px;
+  }
+  .inner-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 158, 24, 0.12); border-color: rgba(255, 158, 24, 0.2); }
+
+  .inner-text h4 { font-size: 0.7rem; color: #999; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 2px; }
+  .inner-text span { font-size: 1.1rem; font-weight: 800; color: #1a1a1a; }
+  .resume-text h4 { font-size: 1.1rem; font-weight: 800; color: #1a1a1a; margin-bottom: 2px; }
+  .resume-text span { font-size: 0.75rem; color: #666; font-weight: 500; }
+
+  .icon-box { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .icon-nat { background: rgba(255, 158, 24, 0.1); color: #ff9e18; border-radius: 50%; }
+  .icon-dl { background: #ff9e18; color: #000; }
+
+  /* ---- 2. LANGUAGES (Right) ---- */
+  .lang-card { height: 100%; display: flex; flex-direction: column; }
+  .card-title { font-size: 1.1rem; font-weight: 800; color: #1a1a1a; padding-bottom: 12px; margin-bottom: 10px; border-bottom: 2px solid rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px; }
+  .card-title i { color: #ff9e18; }
+  .lang-list { list-style: none; padding: 0; display: flex; flex-direction: column; justify-content: space-evenly; height: 100%; gap: 5px; }
+  .lang-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 8px; border-radius: 10px; transition: background 0.2s; }
+  .lang-item:hover { background: rgba(255, 158, 24, 0.05); }
+  .li-info h4 { font-size: 0.95rem; font-weight: 800; color: #ff9e18; margin-bottom: 2px; }
+  .li-info span { font-size: 0.8rem; color: #555; font-weight: 500; display: block; line-height: 1.2; }
+  .pill { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 5px 10px; border-radius: 6px; background: #ff9e18; color: #000; box-shadow: 0 3px 8px rgba(255, 158, 24, 0.15); white-space: nowrap; }
+
+  /* ---- EDUCATION TIMELINE ---- */
+  .timeline-wrapper { position: relative; padding: 5px 0; }
+  .timeline-line { position: absolute; top: 12px; bottom: 12px; left: 10px; width: 3px; background: linear-gradient(to bottom, #ff9e18 0%, rgba(255, 158, 24, 0.2) 100%); border-radius: 10px; }
+  .timeline-item { 
+    position: relative; padding-left: 45px; margin-bottom: 30px; 
+    /* Animation Properties */
+    opacity: 0; animation: fadeUp 0.6s ease forwards;
+    padding-top: 10px; padding-bottom: 10px; padding-right: 10px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  
+  .timeline-item:hover { background: rgba(255,255,255,0.6); transform: translateX(5px); }
+  .timeline-item:hover .t-degree { color: #ff9e18; }
+
+  .t-delay-1 { animation-delay: 0.2s; }
+  .t-delay-2 { animation-delay: 0.4s; }
+  .t-delay-3 { animation-delay: 0.6s; }
+
+  .t-dot { position: absolute; left: 0; top: 15px; width: 22px; height: 22px; background: #fff; border: 5px solid #ff9e18; border-radius: 50%; z-index: 1; transition: transform 0.3s; }
+  .timeline-item:hover .t-dot { transform: scale(1.2); }
+  
+  .t-degree { font-size: 1.1rem; font-weight: 800; color: #1a1a1a; margin-bottom: 3px; transition: color 0.3s; }
+  .t-school { font-size: 0.95rem; color: #555; font-weight: 600; margin-bottom: 5px; }
+  .t-year { font-size: 0.75rem; font-weight: 700; color: #fff; background: #ff9e18; padding: 3px 10px; border-radius: 6px; display: inline-block; }
+
+  /* ---- INTERESTS GRID (FIXED ALIGNMENT) ---- */
+  
+  .interests-section {
+    /* Reduced margin to pull it up closer to education */
+    margin-top: 30px; 
+    margin-bottom: 20px;
+  }
+
+  .grid-interests {
+    /* Changed to Flex to center the 5 items perfectly */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .card-interest {
+    /* Responsive width: Min 200px, but flexible */
+    flex: 1 1 200px;
+    max-width: 220px; /* Prevents stretching too wide */
+    
+    display: flex; flex-direction: column; justify-content: center;
+    text-align: center; padding: 25px 15px;
+    background: #fff; border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    transition: transform 0.3s;
+  }
+  .card-interest:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+  
+  .i-emoji { font-size: 2.2rem; margin-bottom: 10px; display: inline-block; transition: transform 0.3s; }
+  .card-interest:hover .i-emoji { transform: scale(1.2) rotate(10deg); }
+  .i-title { font-size: 1rem; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; }
+  .i-desc { font-size: 0.85rem; color: #666; line-height: 1.4; }
+
+  /* Mobile Responsive */
+  @media (max-width: 900px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .about-container { padding-top: 120px; padding-left: 20px; padding-right: 20px; }
+    .card-interest { max-width: 100%; } /* Full width on mobile */
+  }
+</style>
+
+<div class="title-pill">About Me</div>
+
+<div class="about-container">
+  
+  <div class="page-header animate-card">
+    <h1>My Background</h1>
+    <p>A look into my academic journey, skills, and personal interests.</p>
+  </div>
+
+  <div class="bento-grid">
+    
+    <div class="profile-hub glass-card animate-card delay-1">
+      
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+
+      <div class="hub-header">
+        <span class="badge-pill"><i class="ri-user-smile-fill"></i> Hello, I Am</span>
+        <div class="hub-name">Jaiprakash<br>Parthasarathy</div>
+        <div class="hub-alias">(Also known as: Elvan Parthasarathy)</div>
+      </div>
+
+      <div class="hub-stack">
+        
+        <div class="inner-card">
+          <div class="inner-text">
+            <h4>Nationality</h4>
+            <span>Indian</span>
+          </div>
+          <div class="icon-box icon-nat">
+            <i class="ri-map-pin-2-fill"></i>
+          </div>
+        </div>
+
+        <a href="https://drive.google.com/drive/folders/105ce_pR77Om1WXMHlxX0y9ahOF3LfiIa?usp=sharing" target="_blank" class="inner-card">
+          <div class="resume-text">
+            <h4>My Resume</h4>
+            <span>Click to download</span>
+          </div>
+          <div class="icon-box icon-dl">
+            <i class="ri-download-cloud-2-fill"></i>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="glass-card lang-card animate-card delay-2">
+      <div class="card-title"><i class="ri-translate-2"></i> Languages Known</div>
+      <ul class="lang-list">
+        
+        <li class="lang-item">
+          <div class="li-info">
+            <h4>Tamil</h4>
+            <span>Native proficiency</span>
+          </div>
+          <span class="pill">Native</span>
+        </li>
+
+        <li class="lang-item">
+          <div class="li-info">
+            <h4>English</h4>
+            <span>Professional working proficiency</span>
+          </div>
+          <span class="pill">Fluent</span>
+        </li>
+
+        <li class="lang-item">
+          <div class="li-info">
+            <h4>Japanese</h4>
+            <span>Basic Hiragana & Katakana, Grammar</span>
+          </div>
+          <span class="pill">Basic</span>
+        </li>
+
+        <li class="lang-item">
+          <div class="li-info">
+            <h4>Hindi & Malayalam</h4>
+            <span>Phonetic reading/writing</span>
+          </div>
+          <span class="pill">Basic</span>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="glass-card animate-card delay-3" style="margin-bottom: 20px;">
+    <div class="card-title"><i class="ri-graduation-cap-fill"></i> Education</div>
+    
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+      
+      <div class="timeline-item t-delay-1">
+        <div class="t-dot"></div>
+        <div class="t-degree">B.E. Electronics & Communication Engineering</div>
+        <div class="t-school">R.M.D. Engineering College, Chennai | Anna University</div>
+        <div class="t-year">2023 – 2027 (Pursuing)</div>
+      </div>
+
+      <div class="timeline-item t-delay-2">
+        <div class="t-dot"></div>
+        <div class="t-degree">HSC (12th Grade)</div>
+        <div class="t-school">AIM Matric Hr. Sec. School, Arani</div>
+        <div class="t-year">Completed 2023</div>
+      </div>
+
+      <div class="timeline-item t-delay-3">
+        <div class="t-dot"></div>
+        <div class="t-degree">SSLC (10th Grade)</div>
+        <div class="t-school">AIM Matric Hr. Sec. School, Arani</div>
+        <div class="t-year">Completed 2021</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="interests-section animate-card delay-3">
+    <div class="page-header" style="margin-bottom: 20px;">
+      <h2 style="font-size: 1.8rem; font-weight: 800; color: #1a1a1a;">Areas of Interest</h2>
+    </div>
+
+    <div class="grid-interests">
+      
+      <div class="card-interest">
+        <span class="i-emoji">🎨</span>
+        <div class="i-title">Digital Design</div>
+        <div class="i-desc">Creating visual assets and user interfaces</div>
+      </div>
+
+      <div class="card-interest">
+        <span class="i-emoji">📝</span>
+        <div class="i-title">Technical Writing</div>
+        <div class="i-desc">Documenting concepts clearly</div>
+      </div>
+
+      <div class="card-interest">
+        <span class="i-emoji">🤖</span>
+        <div class="i-title">AI Integration</div>
+        <div class="i-desc">Using AI for engineering solutions</div>
+      </div>
+
+      <div class="card-interest">
+        <span class="i-emoji">📡</span>
+        <div class="i-title">Comm. Systems</div>
+        <div class="i-desc">Networks and signal transmission</div>
+      </div>
+
+      <div class="card-interest">
+        <span class="i-emoji">🖱️</span>
+        <div class="i-title">UI/UX Exploration</div>
+        <div class="i-desc">Intuitive experiences</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,242 @@
+<style>
+  /* ---- Local CSS: Contact Page (Zoom Fix) ---- */
+
+  /* 1. Container */
+  .contact-container {
+    padding-top: 110px; 
+    padding-bottom: 80px;
+    width: 100%;
+    max-width: 1100px; 
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    /* FIX: Prevent horizontal overflow/zoom issues */
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-card { opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+
+  /* Typography (Hidden on Mobile) */
+  .page-header { margin-bottom: 30px; text-align: center; }
+  .page-header h1 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+  }
+  .page-header p { font-size: 1.1rem; color: #666; font-weight: 500; }
+
+  /* Glass Card Base */
+  .glass-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.65) 100%);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 32px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(180, 180, 180, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    
+    /* Ensure card fits within parent */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  .glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(255, 158, 24, 0.15);
+  }
+
+  /* Grid Layout */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr; 
+    gap: 30px;
+    align-items: stretch;
+    width: 100%; /* Ensure it doesn't exceed container */
+  }
+
+  /* Contact List */
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%; /* prevent overflow */
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px; 
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .contact-item:hover {
+    background: rgba(255, 158, 24, 0.08); 
+    transform: translateX(5px);
+  }
+
+  .item-icon {
+    font-size: 1.6rem;
+    color: #ff9e18;
+    min-width: 24px;
+    flex-shrink: 0; /* Prevent icon squishing */
+  }
+  
+  .item-text {
+    font-size: 1.05rem;
+    color: #1a1a1a;
+    font-weight: 600;
+    /* FIX: Handle long text (email) on mobile */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  
+  .address-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #666;
+    margin-top: 2px;
+  }
+
+  /* CTA Card */
+  .cta-card {
+    text-align: center;
+    align-items: center;
+    padding: 50px 30px;
+  }
+  .cta-card h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+  }
+  .cta-card p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 35px;
+  }
+  
+  /* CTA Button */
+  .cta-button {
+    background: #ff9e18;
+    color: #000;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 18px 45px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(255, 158, 24, 0.3);
+    transition: all 0.3s ease;
+    
+    /* Ensure button fits on mobile */
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+  }
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(255, 158, 24, 0.45);
+    background: #ffa733; 
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-container { padding-top: 120px; padding-left: 20px; padding-right: 20px; }
+    .glass-card { padding: 30px; }
+    
+    /* Handle long emails breaking layout */
+    .item-text { font-size: 0.95rem; white-space: normal; word-break: break-word; }
+  }
+</style>
+
+<div class="title-pill">Get in Touch</div>
+
+<div class="contact-container">
+  
+  <div class="page-header animate-card">
+    <h1>Let's Connect</h1>
+    <p>Open for collaborations, opportunities, or just a chat.</p>
+  </div>
+
+  <div class="contact-grid">
+    
+    <div class="glass-card animate-card delay-1">
+      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+        <i class="ri-contacts-book-2-fill" style="color: #ff9e18;"></i> Contact Details
+      </h2>
+      
+      <div class="contact-list">
+
+        <a href="tel:+919345128797" class="contact-item">
+          <i class="ri-phone-fill item-icon"></i>
+          <span class="item-text">+91 93451 28797</span>
+        </a>
+
+        <a href="mailto:jaiprakashpartha@gmail.com" class="contact-item">
+          <i class="ri-mail-fill item-icon"></i> 
+          <span class="item-text">jaiprakashpartha@gmail.com</span>
+        </a>
+
+        <a href="https://linkedin.com/in/jaiprakashpartha" target="_blank" class="contact-item">
+          <i class="ri-linkedin-box-fill item-icon"></i> 
+          <span class="item-text">linkedin.com/in/jaiprakashpartha</span>
+        </a>
+
+        <a href="https://github.com/elvanparthasarathy" target="_blank" class="contact-item">
+          <i class="ri-github-fill item-icon"></i>
+          <span class="item-text">github.com/elvanparthasarathy</span>
+        </a>
+
+        <div class="contact-item" style="align-items: flex-start; cursor: default;">
+          <i class="ri-map-pin-2-fill item-icon" style="margin-top: 4px;"></i>
+          <div>
+            <span class="item-text">Arani, Tamil Nadu - 632317</span>
+            <div class="address-text" style="font-size: 0.85rem; opacity: 0.8;">(Currently in Chennai)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="glass-card cta-card animate-card delay-2">
+      <div>
+        <h2>Thank You!</h2>
+        <p>I am always excited to discuss new projects, creative ideas, or engineering solutions. Feel free to reach out directly.</p>
+        
+        <a href="mailto:jaiprakashpartha@gmail.com" class="cta-button">
+          Write me an Email <i class="ri-arrow-right-up-line"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

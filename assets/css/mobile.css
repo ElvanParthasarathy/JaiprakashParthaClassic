@@ -1,0 +1,256 @@
+/* ---- Mobile CSS: Final Compact Version (Single Line Text Fix) ---- */
+
+/* 1. GLOBAL OVERRIDE: Hide icons on Desktop */
+.nav-icon { display: none; }
+.title-pill { display: none; } 
+
+/* ---- MOBILE STYLES (Max-Width 768px) ---- */
+@media (max-width: 768px) {
+
+  /* 0. REMOVE BLUE TAP HIGHLIGHT */
+  * { -webkit-tap-highlight-color: transparent; outline: none; }
+
+  .nav-icon { display: block !important; }
+
+  /* 3. Body Adjustment */
+  body { padding-bottom: 100px; }
+
+  /* 4. Reset Desktop Navbar Wrapper */
+  .navbar {
+    position: static; height: 0; width: 0;
+    padding: 0; border: none; pointer-events: none;
+    background: transparent !important;
+  }
+  
+  #content { transform: none !important; overflow: visible !important; }
+  
+  .nav-content {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: 100%; height: 0; padding: 0; margin: 0;
+    overflow: visible !important;
+    pointer-events: none;
+  }
+  
+  .nav-elements { display: block; width: 100%; overflow: visible !important; }
+
+  /* ---- 5. LOGO PILL ---- */
+  .logo-pill {
+    position: fixed; top: 20px; left: 20px;
+    z-index: 1005; pointer-events: auto;
+    height: 50px; padding: 0 16px;
+    border-radius: 50px; overflow: hidden;
+    
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.55) 100%);
+    backdrop-filter: blur(40px) saturate(120%);
+    -webkit-backdrop-filter: blur(40px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s;
+  }
+  .logo-pill:active { transform: scale(0.95); }
+  .logo-pill img.nav-logo { height: 32px; width: auto; transform: scale(1.35); display: block; }
+
+  /* ---- 6. GLOBAL TITLE PILL ---- */
+  .title-pill {
+    display: flex; position: fixed; top: 20px; left: 100px; right: 20px; z-index: 1005;
+    height: 50px; padding: 0 20px;
+    align-items: center; justify-content: center;
+    border-radius: 50px;
+    
+    font-size: 1.1rem; font-weight: 700; color: #1a1a1a;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.55) 100%);
+    backdrop-filter: blur(40px) saturate(120%);
+    -webkit-backdrop-filter: blur(40px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Hide Old Headers */
+  .page-header { display: none !important; }
+  
+  /* ---- 7. CONTENT RESIZING (COMPACT MODE) ---- */
+  
+  .skills-container, 
+  .experience-container, 
+  .about-container, 
+  .contact-container,
+  .hero-container {
+    padding-top: 90px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hero-container {
+    padding-bottom: 140px !important;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    left: auto !important; right: auto !important; margin: 0 !important;
+  }
+
+  /* FIX: Reduce Padding Inside Cards (Prevents Wrapping) */
+  .glass-card, .skill-card, .paper-item {
+    padding: 15px !important; 
+    border-radius: 20px !important;
+  }
+
+  /* FIX: Smaller Heading Fonts */
+  .section-title, .card-header h3, .paper-title, .intern-role, .cert-info h4 {
+    font-size: 0.95rem !important; /* Smaller to fit one line */
+    line-height: 1.3 !important;
+    white-space: nowrap; /* Tries to force single line */
+    overflow: hidden; 
+    text-overflow: ellipsis;
+  }
+  
+  .hero-name { font-size: 2.5rem !important; line-height: 1.1 !important; text-align: center !important; }
+  .hero-tagline { font-size: 0.95rem !important; padding: 0 10px !important; text-align: center !important; }
+  .hero-greeting, .hero-alias { text-align: center !important; }
+
+  /* Smaller Icons */
+  .header-icon, .section-title i {
+    width: 32px !important; height: 32px !important;
+    font-size: 1.1rem !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Smaller Body Text */
+  .intern-desc, .paper-desc, .contact-list span, .cta-card p, .cert-info span {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Smaller Skill Tags */
+  .tag {
+    font-size: 0.7rem !important;
+    padding: 5px 10px !important;
+    margin: 2px !important;
+  }
+
+  .contact-grid, .skills-grid, .cert-grid, .bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+  
+  .cta-card { padding: 30px 15px !important; }
+  .cta-card h2 { font-size: 1.5rem !important; }
+
+
+  /* ---- 8. NAV LINKS PILL ---- */
+  .nav-links {
+    position: fixed; bottom: 20px; left: 15px; right: 80px;
+    height: 50px; z-index: 1005; pointer-events: auto;
+    
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+    backdrop-filter: blur(40px) saturate(120%);
+    -webkit-backdrop-filter: blur(40px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    
+    border-radius: 35px; margin: 0; padding: 4px; 
+    display: flex; align-items: stretch; justify-content: space-between; gap: 2px;
+  }
+  
+  .nav-indicator { display: none !important; }
+
+  /* Nav Item */
+  .nav-item {
+    background: transparent; box-shadow: none; border: none;
+    padding: 0; flex: 1; border-radius: 30px; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1px; font-size: 0.6rem; font-weight: 600; color: #888;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+  }
+
+  .nav-item:active { transform: scale(0.92); }
+
+  .nav-item i.nav-icon {
+    font-size: 1.25rem; line-height: 1; color: #888; margin: 0; 
+    transition: color 0.4s ease;
+  }
+  .nav-item span { 
+    line-height: 1; display: block; white-space: nowrap; color: #888; 
+    transition: color 0.4s ease;
+  }
+
+  /* Active State */
+  .nav-item.active {
+    background: #ff9e18 !important; color: #ffffff !important; 
+    box-shadow: 0 4px 12px rgba(255, 158, 24, 0.3); border: none !important;
+  }
+  .nav-item.active i.nav-icon, .nav-item.active span { color: #ffffff !important; }
+
+  /* ---- 9. CONTACT CIRCLE ---- */
+  .navbar .cta-pill {
+    position: fixed; bottom: 20px; right: 15px;
+    width: 50px; height: 50px;
+    z-index: 1005; pointer-events: auto;
+    border-radius: 50%; padding: 0;
+    
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+    backdrop-filter: blur(40px) saturate(120%);
+    -webkit-backdrop-filter: blur(40px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    
+    color: #ff9e18;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s;
+  }
+  
+  .navbar .cta-pill:active { 
+    transform: scale(0.9); 
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%) !important;
+    color: #ff9e18 !important;
+  }
+  
+  .navbar .cta-pill span { display: none; }
+  .navbar .cta-pill i.nav-icon { font-size: 1.5rem; margin: 0; color: #ff9e18; }
+}
+
+/* ---- PERFORMANCE FIXES (MOBILE ONLY) ---- */
+@media (max-width: 768px) {
+
+  /* 1. Fix the scrolling background (Major Lag Fix) */
+  body {
+    background-attachment: scroll !important; 
+  }
+
+  /* 2. OPTIMIZED PILLS (Fast "Fake Glass") */
+  .logo-pill, 
+  .title-pill, 
+  .nav-links, 
+  .navbar .cta-pill {
+    /* DISABLE the laggy blur */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    
+    /* USE "FAKE GLASS" INSTEAD */
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+  }
+
+  /* 3. OPTIMIZED CONTENT CARDS */
+  .glass-card, 
+  .skill-card, 
+  .intern-item {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05) !important;
+  }
+
+}
